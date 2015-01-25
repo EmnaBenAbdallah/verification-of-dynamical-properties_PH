@@ -9,15 +9,15 @@ instate(F,0) :- init(F).
 actionJouable(A,I,B,J,K,TS) :- action(A,I,B,J,K), instate(actifProcess(B,J),TS), instate(actifProcess(A,I),TS),time(TS).
 
 %Liste des process qui peuvent etre actifs dans l'état suivant
-{actifFromTo(B,J,K,TS)} :- actionJouable(A,I,B,J,K,TS), instate(actifProcess(B,J),TS), instate(actifProcess(A,I),TS), J!=K, time(TS). 
+{activeFromTo(B,J,K,TS)} :- actionJouable(A,I,B,J,K,TS), instate(actifProcess(B,J),TS), instate(actifProcess(A,I),TS), J!=K, time(TS). 
 
 %avoir un et un seul changement dans chaque prochain état
-:- 2{ actifFromTo(B,J,K,TS)}, time(TS).
-%:- 0{ actifFromTo(B,J,K,TS)}0, time(TS).
+:- 2{ activeFromTo(B,J,K,TS)}, time(TS).
+%:- 0{ activeFromTo(B,J,K,TS)}0, time(TS).
 
 %Les process actifs dans l'état suivant: celui changé et les inchangés
-instate(actifProcess(B,K),TS+1) :- actifFromTo(B,J,K,TS), time(TS).
-instate(actifProcess(A,I),TS+1) :- instate(actifProcess(A,I),TS), actifFromTo(B,J,K,TS), A!=B, time(TS+1).
+instate(actifProcess(B,K),TS+1) :- activeFromTo(B,J,K,TS), time(TS).
+instate(actifProcess(A,I),TS+1) :- instate(actifProcess(A,I),TS), activeFromTo(B,J,K,TS), A!=B, time(TS+1).
 
 %Vérifier si les process du goal sont actifs au meme instant aprés un certain nombre d'actions
 
@@ -34,6 +34,6 @@ satisfaibleTot :- satisfaibleTot(TS).
 :- not satisfaibleTot.
 
 #hide.
-#show actifFromTo/4.
+#show activeFromTo/4.
 #show satisfaibleTot/1.
 
