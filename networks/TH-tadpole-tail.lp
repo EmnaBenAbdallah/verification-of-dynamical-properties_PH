@@ -180,14 +180,14 @@ init(actifProcess("TR",0 )).
 % Liste des process à atteindre 
 goal(actifProcess("D2", 1 )).
 goal(actifProcess("D3", 0 )).
-%goal(actifProcess("D3T3", xx )).
 goal(actifProcess("EG", 1 )).
 goal(actifProcess("IG", 1 )).
 goal(actifProcess("LG", 0 )).
 goal(actifProcess("T3", 3 )).
-%goal(actifProcess("T3TR", xx )).
 goal(actifProcess("T4", 1 )).
-%goal(actifProcess("T4D2", xx )).
-%goal(actifProcess("T4D3", xx )).
 goal(actifProcess("TR", 1 )).
+
+%Path answer set:
+%%actifFromTo("T4",0,1,0) actifFromTo("T4D2",0,2,1) actifFromTo("D2",0,1,2) actifFromTo("TR",0,1,3) actifFromTo("T4D2",2,3,4) actifFromTo("T3",0,1,5) actifFromTo("IG",0,1,6) actifFromTo("T3",1,2,7) actifFromTo("EG",0,1,8) actifFromTo("D3",1,0,9) actifFromTo("T3",2,3,10) 
+%%
 

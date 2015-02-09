@@ -422,62 +422,50 @@ init(actifProcess("cCblTCRlig",0 )).
 init(actifProcess("cCblTCRphosLCK",0 )).
 
 % Liste des process à atteindre 
-%goal(actifProcess("AP1", 1 )).
-%goal(actifProcess("CD45", xx )).
-%goal(actifProcess("CD45LCKTCRbind", xx )).
-%goal(actifProcess("CD8", xx )).
-%%%goal(actifProcess("CRE", 1 )).
-%goal(actifProcess("CREB", xx )).
-%goal(actifProcess("Ca", xx )).
-%goal(actifProcess("Calcin", xx )).
-%goal(actifProcess("DAG", xx )).
-%goal(actifProcess("DAGPKCth", xx )).
-%goal(actifProcess("ERK", xx )).
-%goal(actifProcess("Fos", xx )).
-%goal(actifProcess("FosJun", xx )).
-%goal(actifProcess("Fyn", xx )).
-%goal(actifProcess("FynLCKTCRbind", xx )).
-%goal(actifProcess("Gads", xx )).
-%goal(actifProcess("Grb2Sos", xx )).
-%goal(actifProcess("Grb2SosRasGRP1", xx )).
-%goal(actifProcess("IKK", xx )).
-%goal(actifProcess("IP3", xx )).
-%goal(actifProcess("IkB", xx )).
-%goal(actifProcess("Itk", xx )).
-%goal(actifProcess("ItkRlk", xx )).
-%goal(actifProcess("JNK", xx )).
-%goal(actifProcess("Jun", xx )).
-%goal(actifProcess("LAT", xx )).
-%goal(actifProcess("LCK", xx )).
-%goal(actifProcess("LCKTCRbind", xx )).
-%goal(actifProcess("MEK", xx )).
-goal(actifProcess("NFAT", 1 )).
-%goal(actifProcess("NFkB", 1 )).
-%goal(actifProcess("PAGCsk", xx )).
-%goal(actifProcess("PAGCskCD8CD45", xx )).
-%goal(actifProcess("PKCth", xx )).
-%goal(actifProcess("PLCg_a", xx )).
-%goal(actifProcess("PLCg_b", xx )).
-%goal(actifProcess("Raf", xx )).
-%goal(actifProcess("Ras", xx )).
-%goal(actifProcess("RasGRP1", xx )).
-%goal(actifProcess("Rlk", xx )).
-%goal(actifProcess("Rsk", xx )).
-%goal(actifProcess("SEK", xx )).
-%goal(actifProcess("Slp76", xx )).
-%goal(actifProcess("TCRbind", xx )).
-%goal(actifProcess("TCRbindFyn", xx )).
-%goal(actifProcess("TCRlig", xx )).
-%goal(actifProcess("TCRphos", xx )).
-%goal(actifProcess("ZAP70", xx )).
-%goal(actifProcess("ZAP70Slp76", xx )).
-%goal(actifProcess("ZAP70Slp76PLCg_b", xx )).
-%goal(actifProcess("__coop0", xx )).
-%goal(actifProcess("cCbl", xx )).
-%goal(actifProcess("cCblTCRlig", xx )).
-%goal(actifProcess("cCblTCRphosLCK", xx )).
 
-%% Chemin (a seul goal NFAT	)
-%actifFromTo("PAGCskCD8CD45",0,2,0) actifFromTo("PAGCskCD8CD45",2,3,1) actifFromTo("LCK",0,1,2) actifFromTo("Rlk",0,1,3) actifFromTo("ItkRlk",0,1,4) actifFromTo("__coop0",0,1,5) actifFromTo("cCblTCRphosLCK",0,1,6) actifFromTo("CD45LCKTCRbind",0,2,7) actifFromTo("CD45LCKTCRbind",2,6,8) actifFromTo("Fyn",0,1,9) actifFromTo("TCRphos",0,1,10) actifFromTo("cCblTCRphosLCK",1,3,11) actifFromTo("ZAP70",0,1,12) actifFromTo("LAT",0,1,13) actifFromTo("PLCg_b",0,1,14) actifFromTo("ZAP70Slp76PLCg_b",0,1,15) actifFromTo("ZAP70Slp76PLCg_b",1,5,16) actifFromTo("Gads",0,1,17) actifFromTo("Slp76",0,1,18) actifFromTo("ZAP70Slp76PLCg_b",5,7,19) actifFromTo("__coop0",1,3,20) actifFromTo("PLCg_a",0,1,21) actifFromTo("IP3",0,1,22) actifFromTo("Ca",0,1,23) actifFromTo("Calcin",0,1,24) actifFromTo("NFAT",0,1,25)
+goal(actifProcess("AP1", 0 )).
+goal(actifProcess("CD45", 1 )).
+goal(actifProcess("CD8", 1 )).
+goal(actifProcess("CRE", 0 )).
+goal(actifProcess("CREB", 0 )).
+goal(actifProcess("Ca", 1 )).
+goal(actifProcess("Calcin", 1 )).
+goal(actifProcess("DAG", 0 )).
+goal(actifProcess("ERK", 0 )).
+goal(actifProcess("Fos", 0 )).
+goal(actifProcess("Fyn", 1 )).
+goal(actifProcess("Gads", 1 )).
+goal(actifProcess("Grb2Sos", 0 )).
+goal(actifProcess("IKK", 0 )).
+goal(actifProcess("IP3", 1 )).
+goal(actifProcess("IkB", 0 )).
+goal(actifProcess("Itk", 0 )).
+goal(actifProcess("JNK", 0 )).
+goal(actifProcess("Jun", 0 )).
+goal(actifProcess("LAT", 1 )).
+goal(actifProcess("LCK", 1 )). %++
+goal(actifProcess("MEK", 0 )).
+goal(actifProcess("NFAT", 1 )).
+goal(actifProcess("NFkB", 1 )).
+goal(actifProcess("PAGCsk", 0 )). %%%
+goal(actifProcess("PKCth", 0 )).%%%
+goal(actifProcess("PLCg_a", 1 )).
+goal(actifProcess("PLCg_b", 1 )).
+goal(actifProcess("Raf", 0 )).%%%
+goal(actifProcess("Ras", 0 )).%%%
+goal(actifProcess("RasGRP1", 0 )).
+goal(actifProcess("Rlk", 1 )). %++
+goal(actifProcess("Rsk", 0 )). %%%
+goal(actifProcess("SEK", 0 )). %%%
+goal(actifProcess("Slp76", 1 )).
+goal(actifProcess("TCRbind", 0 )). %%%
+goal(actifProcess("TCRlig", 1 )).
+goal(actifProcess("TCRphos", 1 )).
+goal(actifProcess("ZAP70", 1 )).
+goal(actifProcess("cCbl", 0 )). %%%%
+
+%Path answer set:
+%%actifFromTo("PAGCskCD8CD45",0,2,0) actifFromTo("PAGCskCD8CD45",2,3,1) actifFromTo("LCK",0,1,2) actifFromTo("CD45LCKTCRbind",0,2,3) actifFromTo("CD45LCKTCRbind",2,6,4) actifFromTo("Fyn",0,1,5) actifFromTo("TCRphos",0,1,6) actifFromTo("cCblTCRphosLCK",0,2,7) actifFromTo("cCblTCRphosLCK",2,3,8) actifFromTo("ZAP70",0,1,9) actifFromTo("LAT",0,1,10) actifFromTo("PLCg_b",0,1,11) actifFromTo("ZAP70Slp76PLCg_b",0,1,12) actifFromTo("NFkB",0,1,13) actifFromTo("Rlk",0,1,14) actifFromTo("Gads",0,1,15) actifFromTo("ItkRlk",0,1,16) actifFromTo("__coop0",0,1,17) actifFromTo("ZAP70Slp76PLCg_b",1,5,18) actifFromTo("Slp76",0,1,19) actifFromTo("ZAP70Slp76PLCg_b",5,7,20) actifFromTo("__coop0",1,3,21) actifFromTo("PLCg_a",0,1,22) actifFromTo("IP3",0,1,23) actifFromTo("Ca",0,1,24) actifFromTo("Calcin",0,1,25) actifFromTo("NFAT",0,1,26) 
 %%
+
 
