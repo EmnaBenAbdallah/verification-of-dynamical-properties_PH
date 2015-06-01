@@ -1,36 +1,35 @@
-%L'évolution du systéme aprés un nombre d'étapes fixé dans le predicat 'time' vérifiant les goals
+% System evolution after a known number of steps fixed in the predicate "time", and verification of the reachability of the goals
+
 time(0..26).
 
-%initialistion de l'etat initial; les process actifs à l'état (t=0)
+% Initialization of the first step; active processes at TS=0
 instate(F,0) :- init(F).
 
-%Les actions jouables dans l'état actuel
+% Playable actions at each step. The number of the step is represented by "TS"
+playableAction(A,I,B,J,K,TS) :- action(A,I,B,J,K), instate(actifProcess(B,J),TS), instate(actifProcess(A,I),TS),time(TS).
 
-actionJouable(A,I,B,J,K,TS) :- action(A,I,B,J,K), instate(actifProcess(B,J),TS), instate(actifProcess(A,I),TS),time(TS).
+% List of processes that can be active at the next step
+{activeFromTo(B,J,K,TS)} :- playableAction(A,I,B,J,K,TS), instate(actifProcess(B,J),TS), instate(actifProcess(A,I),TS), J!=K, time(TS).
 
-%Liste des process qui peuvent etre actifs dans l'état suivant
-{activeFromTo(B,J,K,TS)} :- actionJouable(A,I,B,J,K,TS), instate(actifProcess(B,J),TS), instate(actifProcess(A,I),TS), J!=K, time(TS). 
-
-%avoir un et un seul changement dans chaque prochain état
+% Constraints allowing only one change at each step (asynchronous)
 :- 2{ activeFromTo(B,J,K,TS)}, time(TS).
 %:- 0{ activeFromTo(B,J,K,TS)}0, time(TS).
 
-%Les process actifs dans l'état suivant: celui changé et les inchangés
+% Computing the next state : list of actif processes (changed one and all no changed ones)
 instate(actifProcess(B,K),TS+1) :- activeFromTo(B,J,K,TS), time(TS).
 instate(actifProcess(A,I),TS+1) :- instate(actifProcess(A,I),TS), activeFromTo(B,J,K,TS), A!=B, time(TS+1).
 
-%Vérifier si les process du goal sont actifs au meme instant aprés un certain nombre d'actions
-
+% Verify if the goal is active at one step
 satisfaible(F,TS) :- goal(F), instate(F,TS).
 
-%il faut que tous les goals soient atteints 
+% Verify if all the goals are active at the same step
 getNbreGoals(X) :-X={ goal(_) }.
 satisfaibleTot(TS+1) :- X={ satisfaible(F,TS+1):goal(F) },getNbreGoals(Y), X=Y, time(TS).
 
-%Tous les goals sont satisfaits
+% If all the goals are reached at the same step
 satisfaibleTot :- satisfaibleTot(TS).
 
-%éliminer les réponses qui ne satisfait pas tous les goals
+% Eliminate the answers were some goals are not reached
 :- not satisfaibleTot.
 
 #hide.
