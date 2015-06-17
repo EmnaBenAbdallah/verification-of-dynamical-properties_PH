@@ -21,8 +21,8 @@ Copy scripts and examples folder to your home directory.
 
 Using Terminal, you can execute command-line 
 
-	$ clingo <name-of-script>.lp <name-of-network>.lp
+	$ ./clingo <name-of-script>.lp <name-of-network>.lp
 
 for the script "evolutionToGoals.lp" you have to use the iterative version of clingo :
 
-	$ iclingo <name-of-script>.lp <name-of-network>.lp
+	$ ./iclingo <name-of-script>.lp <name-of-network>.lp
