@@ -46,7 +46,6 @@
 %------------
 
     % @brief: all selected processes corresponding to each fixed point
-    #hide.
     #show fixProcess/2.
 
 

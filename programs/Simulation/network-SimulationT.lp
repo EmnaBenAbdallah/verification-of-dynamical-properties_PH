@@ -17,27 +17,45 @@
 %-------------
 
     % @brief: is true if there is playable actions at that step T
-    % playableAction(Sort, Process, Sort, Process, Process, Time)
+    % playableAction(action(Sort, Process, Sort, Process, Process), Time)
     % {
-        playableAction(A,I,B,J,K,TS) :- action(A,I,B,J,K), instate(actifProcess(B,J),TS), instate(actifProcess(A,I),TS),time(TS).
+	playable(action(A,I,B,J,K),T) :- action(A,I,B,J,K), instate(actifProcess(B,J),T), instate(actifProcess(A,I),T), J!=K, time(T).
     % }
 
     % @brief: is true if the corresponding sort can change from one level to another at the next step
-        % activeFromTo(Sort, Process, Process, Time)
+    % activeFromTo(Sort, Process, Process, Time)
     % {
-        {actifFromTo(B,J,K,TS)} :- playableActipn(A,I,B,J,K,TS), instate(actifProcess(B,J),TS), instate(actifProcess(A,I),TS), J!=K, time(TS).
+	0{play(A,T)}1 :- playable(A,T), time(T).
     % }
 
-    % @brief: is true if the the sort change the level at the next step
-        % instate(actifProcess(Sort, Process), Time)
+    % @brief: is true if the corresponding sort can change from one level to another at the next step
+    % change(Sort, Time)
     % {
-        instate(actifProcess(B,K),TS+1) :- actifFromTo(B,J,K,TS), time(TS).
+	change(B,T+1) :- play(action(_,_,B,J,K),T), time(T).
     % }
 
-    % @brief: is true if the the sort does not change the level at the next step
+   % @brief: is true if there is a possible change at the next step
+    % change(Time)
+    % {
+	change(T) :- change(_,T), time(T).
+    % }
+
+   % @brief: is true if there is no possible change at the next step
+    % noChange(Time)
+    % {
+	noChange(T) :- not change(T), time(T).
+    % }
+
+    % @brief: is true if the sort change the level at the next step
     % instate(actifProcess(Sort, Process), Time)
     % {
-        instate(actifProcess(A,I),TS+1) :- instate(actifProcess(A,I),TS), actifFromTo(B,J,K,TS), A!=B, time(TS+1).
+	instate(actifProcess(B,K),T+1) :- play(action(_,_,B,_,K),T), time(T).
+    % }
+    
+    % @brief: is true if the sort does not change the level at the next step
+    % instate(actifProcess(Sort, Process), Time)
+    % {
+	instate(actifProcess(B,K),T+1) :- not change(B,T+1), instate(actifProcess(B,K),T), time(T).
     % }
 
 %------------
@@ -47,8 +65,8 @@
     % @brief: Almost one change from one step to another (asynchronous)
     %
     % {
-        :- 2{ actifFromTo(B,J,K,T)}, time(T).
-        %:- 0{ activeFromTo(B,J,K,T)}0, time(T).
+        :- 2{play(A,T)}, time(T).
+	:- 0{play(A,T)}0, time(T).
     % }
 
 %------------
@@ -57,5 +75,5 @@
 
     % @brief: Get all changes that constitute the paths after N steps
 
-        #hide.
-        #show activeFromTo/4.
+        #show play/2.
+	#show change/2.	
