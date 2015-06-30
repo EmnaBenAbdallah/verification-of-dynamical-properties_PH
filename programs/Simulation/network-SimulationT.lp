@@ -25,7 +25,7 @@
     % @brief: is true if the corresponding sort can change from one level to another at the next step
     % activeFromTo(Sort, Process, Process, Time)
     % {
-	0{play(A,T)}1 :- playable(A,T), time(T).
+	0{play(Action,T)}1 :- playable(Action,T), time(T).
     % }
 
     % @brief: is true if the corresponding sort can change from one level to another at the next step
@@ -38,12 +38,6 @@
     % change(Time)
     % {
 	change(T) :- change(_,T), time(T).
-    % }
-
-   % @brief: is true if there is no possible change at the next step
-    % noChange(Time)
-    % {
-	noChange(T) :- not change(T), time(T).
     % }
 
     % @brief: is true if the sort change the level at the next step
@@ -65,8 +59,8 @@
     % @brief: Almost one change from one step to another (asynchronous)
     %
     % {
-        :- 2{play(A,T)}, time(T).
-	:- 0{play(A,T)}0, time(T).
+        :- 2{play(Action,T)}, time(T).
+	%:- 0{play(Action,T)}0, time(T).
     % }
 
 %------------

@@ -25,7 +25,7 @@
     % @brief: is true if the corresponding sort can change from one level to another at the next step
     % activeFromTo(Sort, Process, Process, Time)
     % {
-	0{play(A,T)}1 :- playable(A,T), time(T).
+	0{play(Action,T)}1 :- playable(Action,T), time(T).
     % }
 
     % @brief: is true if the corresponding sort can change from one level to another at the next step
@@ -65,15 +65,15 @@
     % @brief: is true if the the goal is reached
     % satisfaible(actifProcess(Sort, Process), Time)
     % {
-        satisfaible(F,TS) :- goal(F), instate(F,TS).
+        reached(F,TS) :- goal(F), instate(F,TS).
     % }
 
     % @brief: is true if all goals are reached at the same step
     % satisfaibleTot(Time)
     % {
         getNbreGoals(X) :-X={ goal(_) }.
-        satisfaibleTot(TS+1) :- X={ satisfaible(F,TS+1):goal(F) },getNbreGoals(Y), X=Y, time(TS).
-        satisfaibleTot :- satisfaibleTot(TS).
+        reachedAllGoals(TS+1) :- X={ satisfaible(F,TS+1):goal(F) },getNbreGoals(Y), X=Y, time(TS).
+        reachedAllGoals :- reachedAllGoals(TS).
     % }
 
 %------------
@@ -83,14 +83,14 @@
     % @brief: Almost one change from one step to another (asynchronous)
     %
     % {
-        :- 2{play(A,T)}, time(T).
-	:- 0{play(A,T)}0, time(T).
+        :- 2{play(Action,T)}, time(T).
+	:- 0{play(Action,T)}0, time(T).
     % }
 
     % @brief: All goals should be reached
     %
     % {
-        :- not satisfaibleTot.
+        :- not reachedAllGoals.
     % }
 
 %------------

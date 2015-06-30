@@ -75,7 +75,7 @@
     % {
 	instate(actifProcess(B,K),t) :- not change(B,t), instate(actifProcess(B,K),t-1).
     % }
- %%%%%%%%%%%%%   
+
     % @brief: is true if the same state of the sort appear at the 2 times
     % repeter(actifProcess(Sort, Process), Time, Time)
     % {
@@ -99,8 +99,6 @@
     % {
 	noChange(t) :- loop(t, _).
     % }
-
-
 
     %------------
     % Constraints
