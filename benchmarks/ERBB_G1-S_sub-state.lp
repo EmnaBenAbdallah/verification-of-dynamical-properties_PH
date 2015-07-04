@@ -494,10 +494,39 @@ init(actifProcess("pRB",0 )).
 % List of processes to be reached
 goal(actifProcess("pRB", 1 )).
 
+%----------------------
+% Fixed point identification:
+%----------------------
 
-% Path answer set:
-%%actifFromTo("ERBB1",0,1,0) actifFromTo("ERBB1ERBB1_2ERBB1_3",0,4,1) actifFromTo("__coop1",3,1,2) actifFromTo("MEK1",0,1,3) actifFromTo("ERalpha",0,1,4) actifFromTo("ERalphaMYC",0,2,5) actifFromTo("MYC",0,1,6) actifFromTo("ERalphaMYC",2,3,7) actifFromTo("__coop2",0,2,8) actifFromTo("AKT1MEK1",0,1,9) actifFromTo("__coop2",2,3,10) actifFromTo("CycD1",0,1,11) actifFromTo("CycD1p21p27",0,4,12) actifFromTo("CDK4",0,1,13) actifFromTo("CDK6",0,1,14) actifFromTo("CDK2CDK4CDK6",0,2,15) actifFromTo("CDK2CDK4CDK6",2,3,16) actifFromTo("pRB",0,1,17) 
-%%
+	% $ ./clingo fixed-points.lp ERBB_G1-S_sub-state.lp
 
-%Fixed point:
-%% goal(actifProcess("AKT1",1). goal(actifProcess("AKT1ERalpha",3)). goal(actifProcess("AKT1MEK1",3)). goal(actifProcess("AKT1MEK1ERalpha",7)). goal(actifProcess("CDK2",1)). goal(actifProcess("CDK2CDK4CDK6",7)). goal(actifProcess("CDK2CDK4MYC",7)). goal(actifProcess("CDK4",1)). goal(actifProcess("CDK6",1)). goal(actifProcess("CycD1",1)). goal(actifProcess("CycD1p21p27",4)). goal(actifProcess("CycE1",1)). goal(actifProcess("CycE1p21p27",4)). goal(actifProcess("EGF",1)). goal(actifProcess("ERBB1",1)). goal(actifProcess("ERBB1ERBB1_2ERBB1_3",7)). goal(actifProcess("ERBB1ERBB2",3)). goal(actifProcess("ERBB1ERBB3",3)). goal(actifProcess("ERBB1_2",1)). goal(actifProcess("ERBB1_3",1)). goal(actifProcess("ERBB2",1)). goal(actifProcess("ERBB2ERBB3",3)). goal(actifProcess("ERBB2_3",1)). goal(actifProcess("ERBB2_3AKT1",3)). goal(actifProcess("ERBB2_3ERalpha",3)). goal(actifProcess("ERBB2_3IGF1R",2)). goal(actifProcess("ERBB3",1)). goal(actifProcess("ERalpha",1)). goal(actifProcess("ERalphaAKT1",3)). goal(actifProcess("ERalphaMYC",3)). goal(actifProcess("IGF1R",0)). goal(actifProcess("MEK1",1)). goal(actifProcess("MYC",1)). goal(actifProcess("MYCCDK4",3)). goal(actifProcess("__coop0",0)). goal(actifProcess("__coop1",0)). goal(actifProcess("__coop2",3)). goal(actifProcess("__coop3",0)). goal(actifProcess("__coop4",0)). goal(actifProcess("p21",0)). goal(actifProcess("p27",0)). goal(actifProcess("pRB",1)).
+%----------------------
+% Reachability command:
+%----------------------
+	%
+	% ***** 
+	% iterative method:
+	% *****
+		% $ ./clingo reachability-iterative.lp incmode-int.lp ERBB_G1-S_sub-state.lp 
+	%
+	% *****
+	% non-iterative method:
+	% *****
+		% $ ./clingo reachability-fixed-T.lp ERBB_G1-S_sub-state.lp 
+
+% -----------
+% Results
+% -----------
+
+% *****
+% Fixed point:
+% *****
+
+%% fixProcess("CycE1",0) fixProcess("p27",0) fixProcess("__coop3",1) fixProcess("AKT1MEK1ERalpha",0) fixProcess("ERBB2_3AKT1",0) fixProcess("ERalpha",0) fixProcess("__coop4",1) fixProcess("CDK2",0) fixProcess("MYC",0) fixProcess("EGF",0) fixProcess("CycD1",0) fixProcess("p21",0) fixProcess("AKT1",0) fixProcess("ERBB1_2",0) fixProcess("ERBB1",0) fixProcess("MYCCDK4",0) fixProcess("ERBB3",0) fixProcess("__coop2",0) fixProcess("AKT1MEK1",0) fixProcess("ERBB2_3ERalpha",0) fixProcess("IGF1R",0) fixProcess("CDK2CDK4CDK6",0) fixProcess("ERBB1_3",0) fixProcess("ERBB2",0) fixProcess("MEK1",0) fixProcess("CDK4",0) fixProcess("AKT1ERalpha",0) fixProcess("pRB",0) fixProcess("__coop1",3) fixProcess("CDK6",0) fixProcess("ERalphaMYC",0) fixProcess("ERBB2_3IGF1R",0) fixProcess("ERalphaAKT1",0) fixProcess("CDK2CDK4MYC",0) fixProcess("__coop0",3) fixProcess("ERBB2_3",0) fixProcess("ERBB2ERBB3",0) fixProcess("ERBB1ERBB1_2ERBB1_3",0) fixProcess("CycE1p21p27",0) fixProcess("ERBB1ERBB2",0) fixProcess("ERBB1ERBB3",0) fixProcess("CycD1p21p27",0)
+
+% *****
+% Path to activate goals:
+% *****
+
+% actifFromTo("ERBB1",0,1,0) actifFromTo("ERBB1ERBB1_2ERBB1_3",0,4,1) actifFromTo("__coop1",3,1,2) actifFromTo("MEK1",0,1,3) actifFromTo("ERalpha",0,1,4) actifFromTo("ERalphaMYC",0,2,5) actifFromTo("MYC",0,1,6) actifFromTo("ERalphaMYC",2,3,7) actifFromTo("__coop2",0,2,8) actifFromTo("AKT1MEK1",0,1,9) actifFromTo("__coop2",2,3,10) actifFromTo("CycD1",0,1,11) actifFromTo("CycD1p21p27",0,4,12) actifFromTo("CDK4",0,1,13) actifFromTo("CDK6",0,1,14) actifFromTo("CDK2CDK4CDK6",0,2,15) actifFromTo("CDK2CDK4CDK6",2,3,16) actifFromTo("pRB",0,1,17) 
+

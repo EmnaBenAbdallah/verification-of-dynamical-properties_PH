@@ -278,7 +278,5 @@ goal(actifProcess("TR", 1 )).
 % *****
 % Path to activate goals:
 % *****
-% play(action("D3",0,"T4",0,1),0) play(action("D2T4D3",0,"T3",0,1),1) play(action("T4",1,"D2T4D3",0,2),2) play(action("D2T4D3",2,"T3",1,2),3) play(action("T3",2,"IG",0,1),4) play(action("IG",1,"IGLG",0,2),5) play(action("IGLG",2,"D2",0,1),6) play(action("D2",1,"D2T4D3",2,6),7) play(action("D2T4D3",6,"T3",2,3),8) play(action("T3",3,"LGT3",0,3),9) play(action("T3",3,"EG",0,1),10) play(action("LGT3",3,"TR",0,1),11)
-%
 
 

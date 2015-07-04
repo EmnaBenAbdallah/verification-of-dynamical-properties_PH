@@ -539,7 +539,7 @@ goal(actifProcess("pRB", 1 )).
 % Fixed point identification:
 %----------------------
 
-	% $ ./clingo fixed-points.lp ERBB_G1-S_whole-state.lp
+	% $ ./clingo fixed-points.lp ERBB_G1-S_sub-state.lp
 
 %----------------------
 % Reachability command:

@@ -464,8 +464,39 @@ goal(actifProcess("TCRphos", 1 )).
 goal(actifProcess("ZAP70", 1 )).
 goal(actifProcess("cCbl", 0 )). %%%%
 
-%Path answer set:
-%%actifFromTo("PAGCskCD8CD45",0,2,0) actifFromTo("PAGCskCD8CD45",2,3,1) actifFromTo("LCK",0,1,2) actifFromTo("CD45LCKTCRbind",0,2,3) actifFromTo("CD45LCKTCRbind",2,6,4) actifFromTo("Fyn",0,1,5) actifFromTo("TCRphos",0,1,6) actifFromTo("cCblTCRphosLCK",0,2,7) actifFromTo("cCblTCRphosLCK",2,3,8) actifFromTo("ZAP70",0,1,9) actifFromTo("LAT",0,1,10) actifFromTo("PLCg_b",0,1,11) actifFromTo("ZAP70Slp76PLCg_b",0,1,12) actifFromTo("NFkB",0,1,13) actifFromTo("Rlk",0,1,14) actifFromTo("Gads",0,1,15) actifFromTo("ItkRlk",0,1,16) actifFromTo("__coop0",0,1,17) actifFromTo("ZAP70Slp76PLCg_b",1,5,18) actifFromTo("Slp76",0,1,19) actifFromTo("ZAP70Slp76PLCg_b",5,7,20) actifFromTo("__coop0",1,3,21) actifFromTo("PLCg_a",0,1,22) actifFromTo("IP3",0,1,23) actifFromTo("Ca",0,1,24) actifFromTo("Calcin",0,1,25) actifFromTo("NFAT",0,1,26) 
-%%
+%----------------------
+% Fixed point identification:
+%----------------------
+
+	% $ ./clingo fixed-points.lp tcrsig40_whole-state.lp
+
+%----------------------
+% Reachability command:
+%----------------------
+	%
+	% ***** 
+	% iterative method:
+	% *****
+		% $ ./clingo reachability-iterative.lp incmode-int.lp tcrsig40_whole-state.lp
+	%
+	% *****
+	% non-iterative method:
+	% *****
+		% $ ./clingo reachability-fixed-T.lp tcrsig40_whole-state.lp
+
+% --------
+% Results
+% --------
+
+% *****
+% Fixed point:
+% *****
+% fixProcess("LCK",0) fixProcess("TCRlig",1) fixProcess("ERK",0) fixProcess("Slp76",0) fixProcess("PLCg_b",0) fixProcess("cCbl",0) fixProcess("PLCg_a",0) fixProcess("CD45",1) fixProcess("PKCth",0) fixProcess("AP1",0) fixProcess("TCRphos",1) fixProcess("RasGRP1",0) fixProcess("Gads",0) fixProcess("Fos",0) fixProcess("Jun",0) fixProcess("PAGCsk",1) fixProcess("IkB",1) fixProcess("CREB",0) fixProcess("TCRbind",1) fixProcess("Calcin",0) fixProcess("Rlk",0) fixProcess("Raf",0) fixProcess("CD8",1) fixProcess("ZAP70",0) fixProcess("SEK",0) fixProcess("Fyn",1) fixProcess("ItkRlk",0) fixProcess("LAT",0) fixProcess("NFAT",0) fixProcess("IKK",0) fixProcess("Grb2Sos",0) fixProcess("TCRbindFyn",3) fixProcess("DAG",0) fixProcess("Ras",0) fixProcess("CD45LCKTCRbind",5) fixProcess("Ca",0) fixProcess("MEK",0) fixProcess("LCKTCRbind",1) fixProcess("IP3",0) fixProcess("ZAP70Slp76",0) fixProcess("Rsk",0) fixProcess("Itk",0) fixProcess("cCblTCRphosLCK",2) fixProcess("CRE",0) fixProcess("__coop0",0) fixProcess("cCblTCRlig",1) fixProcess("PAGCskCD8CD45",7) fixProcess("JNK",0) fixProcess("ZAP70Slp76PLCg_b",0) fixProcess("FosJun",0) fixProcess("FynLCKTCRbind",5) fixProcess("Grb2SosRasGRP1",0) fixProcess("NFkB",0) fixProcess("DAGPKCth",0)
+
+% *****
+% Path to activate goals:
+% *****
+%actifFromTo("PAGCskCD8CD45",0,2,0) actifFromTo("PAGCskCD8CD45",2,3,1) actifFromTo("LCK",0,1,2) actifFromTo("CD45LCKTCRbind",0,2,3) actifFromTo("CD45LCKTCRbind",2,6,4) actifFromTo("Fyn",0,1,5) actifFromTo("TCRphos",0,1,6) actifFromTo("cCblTCRphosLCK",0,2,7) actifFromTo("cCblTCRphosLCK",2,3,8) actifFromTo("ZAP70",0,1,9) actifFromTo("LAT",0,1,10) actifFromTo("PLCg_b",0,1,11) actifFromTo("ZAP70Slp76PLCg_b",0,1,12) actifFromTo("NFkB",0,1,13) actifFromTo("Rlk",0,1,14) actifFromTo("Gads",0,1,15) actifFromTo("ItkRlk",0,1,16) actifFromTo("__coop0",0,1,17) actifFromTo("ZAP70Slp76PLCg_b",1,5,18) actifFromTo("Slp76",0,1,19) actifFromTo("ZAP70Slp76PLCg_b",5,7,20) actifFromTo("__coop0",1,3,21) actifFromTo("PLCg_a",0,1,22) actifFromTo("IP3",0,1,23) actifFromTo("Ca",0,1,24) actifFromTo("Calcin",0,1,25) actifFromTo("NFAT",0,1,26) 
+%
 
 
