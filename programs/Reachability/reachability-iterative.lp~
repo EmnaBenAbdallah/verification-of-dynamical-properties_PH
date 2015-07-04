@@ -20,6 +20,9 @@
     % Initialization of the first step; active processes at T=0
         instate(F,0) :- init(F).
 
+    %définir les sortes du fichier PH
+	sort(X) :- process(X,_).
+
     % Computing the number of sorts in the system
 	getNbreSorts(X) :- X={sort(_)}.
 
@@ -75,7 +78,9 @@
     % {
 	instate(actifProcess(B,K),t) :- not change(B,t), instate(actifProcess(B,K),t-1).
     % }
- %%%%%%%%%%%%%   
+
+	time(0,..t-1).
+
     % @brief: is true if the same state of the sort appear at the 2 times
     % repeter(actifProcess(Sort, Process), Time, Time)
     % {
@@ -99,8 +104,6 @@
     % {
 	noChange(t) :- loop(t, _).
     % }
-
-
 
     %------------
     % Constraints

@@ -1,6 +1,6 @@
 % This file was generated from the PH model 'ERBB_G1-S_flat.ph'
 
-% Process
+% Processes
 process("AKT1", 0..1). %+
 process("AKT1ERalpha", 0..3).
 process("AKT1MEK1", 0..3).
@@ -445,9 +445,9 @@ action("CycE1p21p27",4,"CDK2",0,1).
 action("CycD1p21p27",4,"CDK4",0,1).
 action("CycD1",1,"CDK6",0,1).
 
-% A MODIFIER 
+% To be modified for the reachability problem  
 
-% initialisation des process actifs
+% initialisation of active processes
 init(actifProcess("AKT1",0 )).
 init(actifProcess("AKT1ERalpha",0 )).
 init(actifProcess("AKT1MEK1",0 )).
@@ -491,7 +491,7 @@ init(actifProcess("p21",0 )).
 init(actifProcess("p27",0 )).
 init(actifProcess("pRB",0 )).
 
-% Liste des process à atteindre 
+% List of processes to be reached
 goal(actifProcess("AKT1", 0 )).
 %goal(actifProcess("AKT1ERalpha", 3 )).
 %goal(actifProcess("AKT1MEK1", 3 )).

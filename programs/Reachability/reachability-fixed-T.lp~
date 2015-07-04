@@ -65,15 +65,15 @@
     % @brief: is true if the the goal is reached
     % satisfaible(actifProcess(Sort, Process), Time)
     % {
-        satisfaible(F,TS) :- goal(F), instate(F,TS).
+        reached(F,TS) :- goal(F), instate(F,TS).
     % }
 
     % @brief: is true if all goals are reached at the same step
     % satisfaibleTot(Time)
     % {
         getNbreGoals(X) :-X={ goal(_) }.
-        satisfaibleTot(TS+1) :- X={ satisfaible(F,TS+1):goal(F) },getNbreGoals(Y), X=Y, time(TS).
-        satisfaibleTot :- satisfaibleTot(TS).
+        reachedAllGoals(TS+1) :- X={ satisfaible(F,TS+1):goal(F) },getNbreGoals(Y), X=Y, time(TS).
+        reachedAllGoals :- reachedAllGoals(TS).
     % }
 
 %------------
@@ -90,7 +90,7 @@
     % @brief: All goals should be reached
     %
     % {
-        :- not satisfaibleTot.
+        :- not reachedAllGoals.
     % }
 
 %------------

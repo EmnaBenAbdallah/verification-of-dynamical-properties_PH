@@ -1,6 +1,6 @@
 % This file was generated from the PH model 'ERBB_G1-S_flat.ph'
 
-% Process
+% Processes
 process("AKT1", 0..1). %+
 process("AKT1ERalpha", 0..3).
 process("AKT1MEK1", 0..3).
@@ -445,9 +445,9 @@ action("CycE1p21p27",4,"CDK2",0,1).
 action("CycD1p21p27",4,"CDK4",0,1).
 action("CycD1",1,"CDK6",0,1).
 
-% A MODIFIER 
+% To be modified for the reachability problem  
 
-% initialisation des process actifs
+% initialisation of active processes
 init(actifProcess("AKT1",0 )).
 init(actifProcess("AKT1ERalpha",0 )).
 init(actifProcess("AKT1MEK1",0 )).
@@ -491,11 +491,11 @@ init(actifProcess("p21",0 )).
 init(actifProcess("p27",0 )).
 init(actifProcess("pRB",0 )).
 
-% Liste des process à atteindre 
+% List of processes to be reached
 goal(actifProcess("pRB", 1 )).
 
 
-%Path answer set:
+% Path answer set:
 %%actifFromTo("ERBB1",0,1,0) actifFromTo("ERBB1ERBB1_2ERBB1_3",0,4,1) actifFromTo("__coop1",3,1,2) actifFromTo("MEK1",0,1,3) actifFromTo("ERalpha",0,1,4) actifFromTo("ERalphaMYC",0,2,5) actifFromTo("MYC",0,1,6) actifFromTo("ERalphaMYC",2,3,7) actifFromTo("__coop2",0,2,8) actifFromTo("AKT1MEK1",0,1,9) actifFromTo("__coop2",2,3,10) actifFromTo("CycD1",0,1,11) actifFromTo("CycD1p21p27",0,4,12) actifFromTo("CDK4",0,1,13) actifFromTo("CDK6",0,1,14) actifFromTo("CDK2CDK4CDK6",0,2,15) actifFromTo("CDK2CDK4CDK6",2,3,16) actifFromTo("pRB",0,1,17) 
 %%
 
