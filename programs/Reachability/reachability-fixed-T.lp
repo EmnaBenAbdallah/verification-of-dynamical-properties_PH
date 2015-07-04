@@ -7,7 +7,7 @@
 %------------
 
     %Maximum number of the steps
-        time(0..20).
+        time(0..28).
 
     % Initialization of the first step; active processes at T=0
         instate(F,0) :- init(F).
@@ -72,7 +72,7 @@
     % satisfaibleTot(Time)
     % {
         getNbreGoals(X) :-X={ goal(_) }.
-        reachedAllGoals(TS+1) :- X={ satisfaible(F,TS+1):goal(F) },getNbreGoals(Y), X=Y, time(TS).
+        reachedAllGoals(TS+1) :- X={ reached(F,TS+1):goal(F) },getNbreGoals(Y), X=Y, time(TS).
         reachedAllGoals :- reachedAllGoals(TS).
     % }
 
@@ -100,8 +100,4 @@
     % @brief: Get all changes that constitute the path to reach the goals
 
         #show play/2.
-	#show change/2.	
-
-    % DEBUG
-        #show satisfaibleTot/1.
 

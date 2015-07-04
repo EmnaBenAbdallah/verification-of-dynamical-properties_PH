@@ -4,14 +4,15 @@
 
 	#const istop  = "SAT".
 	#const imin   = 1.
-	#const imax   = 50.
+	#const imax   = 30.
 
 % *******************
 % Base part
 % *******************
 
     % inchangeable part
-	#program base.
+
+#program base.
 
     %------------
     % FACTS
@@ -20,19 +21,22 @@
     % Initialization of the first step; active processes at T=0
         instate(F,0) :- init(F).
 
+    %définir les sortes du fichier PH
+	sort(X) :- process(X,_).
+
     % Computing the number of sorts in the system
 	getNbreSorts(X) :- X={sort(_)}.
 
 % *******************
-% Cumulative part
+% Iterative part
 % *******************
 
-    % Cumulative part with t is the number of the steps. This part will be executed for each t untill verification of the reachablity of the goals
-	#program step(t).
+    % Iterative part with t is the number of the steps. This part will be executed for each t untill verification of the reachablity of the goals
 
     %-------------
     % Evolution predicates
     %-------------
+	#program step(t).
 
     % @brief: is true if there is playable actions at that step T
     % playableAction(action(Sort, Process, Sort, Process, Process), Time)
@@ -43,25 +47,15 @@
     % @brief: is true if the corresponding sort can change from one level to another at the next step
     % activeFromTo(Sort, Process, Process, Time)
     % {
-	0{play(Action,t-1)}1 :- playable(Action,t-1).
+	0{play(A,t-1)}1 :- playable(A,t-1).
     % }
+
     
-    % @brief: is true if the corresponding sort can change from one level to another at the next step
-    % change(Sort, Time)
+    % @brief: Almost one change from one step to another (asynchronous)
+    %
     % {
-	change(B,t) :- play(action(_,_,B,J,K),t-1).
-    % }
-
-   % @brief: is true if there is a possible change at the next step
-    % change(Time)
-    % {
-	change(t) :- change(_,t).
-    % }
-
-   % @brief: is true if there is no possible change at the next step
-    % noChange(Time)
-    % {
-	noChange(t) :- not change(t).
+        :- 2{play(Action,t-1)}.
+	:- 0{play(Action,t-1)}0.
     % }
 
     % @brief: is true if the sort change the level at the next step
@@ -75,6 +69,17 @@
     % {
 	instate(actifProcess(B,K),t) :- not change(B,t), instate(actifProcess(B,K),t-1).
     % }
+
+    % @brief: is true if the corresponding sort can change from one level to another at the next step
+    % change(Sort, Time)
+    % {
+	change(B,t) :- play(action(_,_,B,J,K),t-1).
+    % }
+
+    % @brief: is the steps that already passed through the network evolution.
+    %{
+	time(0..t-1).
+    %}
 
     % @brief: is true if the same state of the sort appear at the 2 times
     % repeter(actifProcess(Sort, Process), Time, Time)
@@ -100,17 +105,18 @@
 	noChange(t) :- loop(t, _).
     % }
 
-    %------------
-    % Constraints
-    %------------
-    
-    % @brief: Almost one change from one step to another (asynchronous)
-    %
+   % @brief: is true if there is no possible change at the next step
+    % noChange(Time)
     % {
-        :- 2{play(Action,t-1)}.
-	:- 0{play(Action,t-1)}0.
+	noChange(t) :- not change(t).
     % }
-    
+
+   % @brief: is true if there is a possible change at the next step
+    % change(Time)
+    % {
+	change(t) :- change(_,t).
+    % }
+
     % @brief: no loops on the same states
     %
     % {
@@ -122,9 +128,9 @@
 % *******************
     
     % " check(t) " declares the next part as a request based on the number of steps t, but does not accumulate on the successive steps. In this part the program check the reachabilty property
-        
+
 	#program check(t).
-    
+
     % @brief: is true if the the goal is reached
     % notReached(Time)
     % {
@@ -140,12 +146,8 @@
     % {
 	:- notReached(t), query(t).
     % }
-    
-% *******************
-% Output
-% *******************
-    
-    % @brief: Get all changes that constitute the path to reach the goals
 
-	#show play/2.
-	#show change/2.	
+#show play/2.
+%#show change/1.
+%#show change/2.
+

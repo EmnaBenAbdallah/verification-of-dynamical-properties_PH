@@ -1,6 +1,6 @@
 % This file was generated from the PH model 'tcrsig40_flat.ph'
 
-% Process
+% Processes
 process("AP1", 0..1).
 process("CD45", 0..1).
 process("CD45LCKTCRbind", 0..7).
@@ -363,9 +363,9 @@ action("ZAP70Slp76",3,"Itk",0,1).
 action("Itk",1,"ItkRlk",1,3).
 action("Rlk",0,"ItkRlk",1,0).
 
-% A MODIFIER 
+% To be modified for the reachability problem  
 
-% initialisation des process actifs
+% initialisation of active processes
 init(actifProcess("AP1",0 )).
 init(actifProcess("CD45",1 )).%++
 init(actifProcess("CD45LCKTCRbind",0 )).
@@ -421,7 +421,7 @@ init(actifProcess("cCbl",0 )).
 init(actifProcess("cCblTCRlig",0 )).
 init(actifProcess("cCblTCRphosLCK",0 )).
 
-% Liste des process à atteindre 
+% List of processes to be reached
 
 goal(actifProcess("AP1", 0 )).
 goal(actifProcess("CD45", 1 )).

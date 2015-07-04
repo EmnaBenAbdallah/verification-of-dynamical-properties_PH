@@ -1,6 +1,6 @@
 % This file was generated from the PH model 'TH-tadpole-tail.ph'
 
-% Process
+% Processes
 process("D2", 0..1).
 process("D2T4D3", 0..7).
 process("D3", 0..1).
@@ -215,9 +215,9 @@ action("LG",0,"IGLG",1,0).
 action("IG",1,"IGLG",1,3).
 action("IGLG",2,"D2",0,1).
 
-% A MODIFIER 
+% To be modified for the reachability problem  
 
-% initialisation des process actifs
+% initialisation of active processes
 init(actifProcess("D2",0 )).
 init(actifProcess("D2T4D3",0 )).
 init(actifProcess("D3",0 )).
@@ -232,18 +232,18 @@ init(actifProcess("T4",0 )).
 init(actifProcess("TR",0 )).
 init(actifProcess("TRT3",0 )).
 
-% Liste des process à atteindre 
-%goal(actifProcess("D2", xx )).
-%goal(actifProcess("D2T4D3", xx )).
-%goal(actifProcess("D3", xx )).
-%goal(actifProcess("EG", xx )).
-%goal(actifProcess("EGT3", xx )).
-%goal(actifProcess("IG", xx )).
-%goal(actifProcess("IGLG", xx )).
-%goal(actifProcess("LG", xx )).
-%goal(actifProcess("LGT3", xx )).
-%goal(actifProcess("T3", xx )).
-%goal(actifProcess("T4", xx )).
-%goal(actifProcess("TR", xx )).
-%goal(actifProcess("TRT3", xx )).
+% List of processes to be reached
+goal(actifProcess("D2", 1 )).
+goal(actifProcess("D3", 0 )).
+%goal(actifProcess("D3T3", xx )).
+goal(actifProcess("EG", 1 )).
+goal(actifProcess("IG", 1 )).
+goal(actifProcess("LG", 0 )).
+goal(actifProcess("T3", 3 )).
+%goal(actifProcess("T3TR", xx )).
+goal(actifProcess("T4", 1 )).
+%goal(actifProcess("T4D2", xx )).
+%goal(actifProcess("T4D3", xx )).
+goal(actifProcess("TR", 1 )).
+
 
